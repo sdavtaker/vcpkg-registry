@@ -31,7 +31,6 @@ jobs:
           test -d ports || { echo "Missing ports/ directory"; exit 1; }
           shopt -s nullglob
           for port_dir in ports/*/; do
-            port=$(basename "$port_dir")
             test -f "${port_dir}vcpkg.json" || { echo "Missing ${port_dir}vcpkg.json"; exit 1; }
             test -f "${port_dir}portfile.cmake" || { echo "Missing ${port_dir}portfile.cmake"; exit 1; }
           done
