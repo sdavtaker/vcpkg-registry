@@ -29,6 +29,7 @@ jobs:
         run: |
           test -f versions/baseline.json || { echo "Missing versions/baseline.json"; exit 1; }
           test -d ports || { echo "Missing ports/ directory"; exit 1; }
+          shopt -s nullglob
           for port_dir in ports/*/; do
             port=$(basename "$port_dir")
             test -f "${port_dir}vcpkg.json" || { echo "Missing ${port_dir}vcpkg.json"; exit 1; }
@@ -38,9 +39,10 @@ jobs:
 
       - name: Check for placeholder SHA512 values
         run: |
+          shopt -s nullglob
           found=0
           for portfile in ports/*/portfile.cmake; do
-            if grep -qE 'SHA512[[:space:]]+0([[:space:]]|$)' "$portfile"; then
+            if grep -qE 'SHA512[[:space:]]+0+([[:space:]]|$)' "$portfile"; then
               echo "ERROR: $portfile contains placeholder SHA512 — update before merging"
               found=1
             fi
@@ -50,6 +52,7 @@ jobs:
 
       - name: Check port name consistency
         run: |
+          shopt -s nullglob
           for port_dir in ports/*/; do
             port=$(basename "$port_dir")
             declared=$(jq -r '.name' "${port_dir}vcpkg.json")
