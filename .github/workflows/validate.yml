@@ -1,0 +1,63 @@
+name: release-validate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  release-validate:
+    name: release-validate
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+
+      - name: Validate JSON files
+        run: |
+          find . -name '*.json' -not -path './.git/*' -print0 | while IFS= read -r -d '' f; do
+            jq empty "$f" || { echo "Invalid JSON: $f"; exit 1; }
+          done
+          echo "All JSON files are valid"
+
+      - name: Check registry structure
+        run: |
+          test -f versions/baseline.json || { echo "Missing versions/baseline.json"; exit 1; }
+          test -d ports || { echo "Missing ports/ directory"; exit 1; }
+          shopt -s nullglob
+          for port_dir in ports/*/; do
+            test -f "${port_dir}vcpkg.json" || { echo "Missing ${port_dir}vcpkg.json"; exit 1; }
+            test -f "${port_dir}portfile.cmake" || { echo "Missing ${port_dir}portfile.cmake"; exit 1; }
+          done
+          echo "Registry structure is valid"
+
+      - name: Check for placeholder SHA512 values
+        run: |
+          shopt -s nullglob
+          found=0
+          for portfile in ports/*/portfile.cmake; do
+            if grep -qE 'SHA512[[:space:]]+0+([[:space:]]|$)' "$portfile"; then
+              echo "ERROR: $portfile contains placeholder SHA512 — update before merging"
+              found=1
+            fi
+          done
+          [ "$found" -eq 0 ] || exit 1
+          echo "No placeholder SHA512 values found"
+
+      - name: Check port name consistency
+        run: |
+          shopt -s nullglob
+          for port_dir in ports/*/; do
+            port=$(basename "$port_dir")
+            declared=$(jq -r '.name' "${port_dir}vcpkg.json")
+            if [ "$declared" != "$port" ]; then
+              echo "Port directory '$port' does not match vcpkg.json name '$declared'"
+              exit 1
+            fi
+          done
+          echo "Port names are consistent"

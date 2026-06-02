@@ -1,0 +1,7 @@
+{
+  "name": "cdcommons",
+  "version-semver": "0.1.0",
+  "description": "Header-only DEVS simulation time type library (rational, rsfp, mbfp, decimal)",
+  "homepage": "https://github.com/sdavtaker/cdcommons",
+  "license": "BSD-2-Clause"
+}
