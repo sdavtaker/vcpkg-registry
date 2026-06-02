@@ -23,7 +23,7 @@ Layout follows the vcpkg git registry spec: `ports/<name>/` + `versions/`.
 - Disable tests via the project's own option, not the generic `BUILD_TESTING`:
   each library exposes `<LIBNAME>_BUILD_TESTS=OFF`.
 - SHA512 must be the real tarball hash — never use `0` as a placeholder.
-  Compute it with: `curl -sL <tarball-url> | sha512sum`
+  Compute it with: `curl -fsSL <tarball-url> | sha512sum`
 - Do not add `file(REMOVE_RECURSE "${CURRENT_PACKAGES_DIR}/debug")` when
   `VCPKG_BUILD_TYPE release` is already set — the debug dir is never created.
 
