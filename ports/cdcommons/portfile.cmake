@@ -4,7 +4,7 @@ vcpkg_from_github(
     OUT_SOURCE_PATH SOURCE_PATH
     REPO sdavtaker/cdcommons
     REF "v0.1.0"
-    SHA512 0  # TODO: replace with actual SHA512 after v0.1.0 release tag is created
+    SHA512 68b668082f0c801e195e93d946d3605afcb52850e82b4b0d0d3332dab83a61fac5191a37f0ae444709cd950f840abf888b6838dbe540802fc42a00d92f2aa8f0
     HEAD_REF main
 )
 

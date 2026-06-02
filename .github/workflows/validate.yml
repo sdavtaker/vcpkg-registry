@@ -17,7 +17,7 @@ jobs:
 
       - name: Validate JSON files
         run: |
-          find . -name '*.json' -not -path './.git/*' | while read f; do
+          find . -name '*.json' -not -path './.git/*' -print0 | while IFS= read -r -d '' f; do
             jq empty "$f" || { echo "Invalid JSON: $f"; exit 1; }
           done
           echo "All JSON files are valid"
@@ -32,6 +32,18 @@ jobs:
             test -f "${port_dir}portfile.cmake" || { echo "Missing ${port_dir}portfile.cmake"; exit 1; }
           done
           echo "Registry structure is valid"
+
+      - name: Check for placeholder SHA512 values
+        run: |
+          found=0
+          for portfile in ports/*/portfile.cmake; do
+            if grep -qE 'SHA512[[:space:]]+0\b' "$portfile"; then
+              echo "ERROR: $portfile contains placeholder SHA512 — update before merging"
+              found=1
+            fi
+          done
+          [ "$found" -eq 0 ] || exit 1
+          echo "No placeholder SHA512 values found"
 
       - name: Check port name consistency
         run: |
