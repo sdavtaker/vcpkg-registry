@@ -37,7 +37,7 @@ jobs:
         run: |
           found=0
           for portfile in ports/*/portfile.cmake; do
-            if grep -qE 'SHA512[[:space:]]+0\b' "$portfile"; then
+            if grep -qE 'SHA512[[:space:]]+0([[:space:]]|$)' "$portfile"; then
               echo "ERROR: $portfile contains placeholder SHA512 — update before merging"
               found=1
             fi
