@@ -11,7 +11,7 @@ vcpkg_from_github(
 vcpkg_cmake_configure(
     SOURCE_PATH "${SOURCE_PATH}"
     OPTIONS
-        -DBUILD_TESTING=OFF
+        -DCDCOMMONS_BUILD_TESTS=OFF
 )
 
 vcpkg_cmake_install()
