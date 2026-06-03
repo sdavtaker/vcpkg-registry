@@ -1,5 +1,17 @@
 {
   "default": {
+    "cadmia": {
+      "baseline": "0.4.0",
+      "port-version": 0
+    },
+    "cadmium": {
+      "baseline": "0.3.0",
+      "port-version": 0
+    },
+    "cdboost": {
+      "baseline": "0.3.1",
+      "port-version": 0
+    },
     "cdcommons": {
       "baseline": "0.1.0",
       "port-version": 1
