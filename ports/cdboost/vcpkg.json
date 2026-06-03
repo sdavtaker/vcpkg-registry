@@ -1,0 +1,19 @@
+{
+  "name": "cdboost",
+  "version-semver": "0.3.1",
+  "description": "Header-only PDEVS simulation engine with structured NDJSON logging",
+  "homepage": "https://github.com/sdavtaker/cdboost",
+  "license": "BSD-2-Clause",
+  "dependencies": [
+    "boost-rational",
+    "spdlog",
+    {
+      "name": "vcpkg-cmake",
+      "host": true
+    },
+    {
+      "name": "vcpkg-cmake-config",
+      "host": true
+    }
+  ]
+}
