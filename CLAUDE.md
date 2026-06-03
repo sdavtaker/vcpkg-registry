@@ -9,8 +9,12 @@ Layout follows the vcpkg git registry spec: `ports/<name>/` + `versions/`.
    never the untyped `"version"` field (vcpkg rejects it).
 2. Create `ports/<name>/portfile.cmake` — see conventions below.
 3. Commit the port files.
-4. Run `vcpkg x-add-version --all --verbose` to generate/update
-   `versions/<letter>-/<name>.json` and `versions/baseline.json`.
+4. Compute the git-tree SHA for the port directory:
+   `git rev-parse HEAD:ports/<name>`
+   Then manually create/update `versions/<letter>-/<name>.json` with that SHA
+   and update `versions/baseline.json`.
+   Note: `vcpkg x-add-version` only works on the vcpkg built-in registry and
+   cannot be used for this custom git registry.
 5. Commit the versions database separately.
 6. Open a PR — the `release-validate` CI check must pass before merge.
 
