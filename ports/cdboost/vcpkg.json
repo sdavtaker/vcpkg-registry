@@ -1,6 +1,6 @@
 {
   "name": "cdboost",
-  "version-semver": "0.3.1",
+  "version-semver": "0.3.2",
   "description": "Header-only PDEVS simulation engine with structured NDJSON logging",
   "homepage": "https://github.com/sdavtaker/cdboost",
   "license": "BSD-2-Clause",
