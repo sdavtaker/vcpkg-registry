@@ -3,8 +3,8 @@ set(VCPKG_BUILD_TYPE release)
 vcpkg_from_github(
     OUT_SOURCE_PATH SOURCE_PATH
     REPO sdavtaker/cdboost
-    REF "v0.3.2"
-    SHA512 2fcfda5dcebd311ba5caa00057afca30442439d80c9f51f27a5e2c3dfff0d15969d2624cb4dbb3d85d24496ffd8a0932c72c55c532ea555e16ffd8de7e97a369
+    REF "v0.3.3"
+    SHA512 bf1043ee9705f22684689c1ac05391da1108843081a0859b9c5d3b6f4105d819785eed0229b428a9f5fb0398d5ef908830fc37504dbcbd4a5f5920b182a5d6fd
     HEAD_REF main
 )
 
