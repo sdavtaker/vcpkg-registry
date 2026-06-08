@@ -3,8 +3,8 @@ set(VCPKG_BUILD_TYPE release)
 vcpkg_from_github(
     OUT_SOURCE_PATH SOURCE_PATH
     REPO sdavtaker/cadmia
-    REF "v0.4.1"
-    SHA512 aca50bffb9b3f26592ccdb0639e24ad9c0169063dfd86cc4a16114897be0a4e61d27249eb35fcf71af976ca0594584c7498ed37e12a37464f6c5b4bce2ece931
+    REF "v0.4.2"
+    SHA512 75ecde40610a7a00d6e281cf6a4add7053e02d3d4a7936070c2032c76352cd2f93e559ef67e48db956e106f12214ecc3519dfb303eeee3816be0ca9936dc88d0
     HEAD_REF main
 )
 
