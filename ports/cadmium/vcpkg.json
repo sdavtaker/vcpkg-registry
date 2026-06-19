@@ -1,7 +1,7 @@
 {
   "name": "cadmium",
-  "version-semver": "0.3.1",
-  "description": "Header-only PDEVS simulation engine (C++23)",
+  "version-semver": "0.4.1",
+  "description": "Header-only DEVS/PDEVS/QSS simulation engine (C++23)",
   "homepage": "https://github.com/sdavtaker/cadmium",
   "license": "BSD-2-Clause",
   "dependencies": [
