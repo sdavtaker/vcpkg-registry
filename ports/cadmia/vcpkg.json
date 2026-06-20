@@ -1,6 +1,6 @@
 {
   "name": "cadmia",
-  "version-semver": "0.4.4",
+  "version-semver": "0.4.5",
   "description": "Header-only IA-DEVS simulation engine (C++23)",
   "homepage": "https://github.com/sdavtaker/cadmia",
   "license": "BSD-2-Clause",
